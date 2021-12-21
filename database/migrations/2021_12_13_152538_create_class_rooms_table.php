@@ -17,7 +17,8 @@ class CreateClassRoomsTable extends Migration
             $table->id();
             $table->softDeletes();
             $table->text('name');
-            $table->string('color');
+            $table->string('color_1');
+            $table->string('color_2');
             $table->timestamps();
         });
     }

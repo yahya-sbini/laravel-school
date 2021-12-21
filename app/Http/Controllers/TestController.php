@@ -136,7 +136,8 @@ class TestController extends Controller
             if (!$avilableClassRoom && $collection[$i][0] != '') {
                 ClassRoom::create([
                     'name' => $collection[$i][0],
-                    'color' => $collection[$i][7]
+                    'color_1' => $collection[$i][7],
+                    'color_2' => $collection[$i][8]
                 ]);
             }
 
@@ -144,7 +145,8 @@ class TestController extends Controller
             if (!$avilableChapter && $collection[$i][1] != '') {
                 Chapter::create([
                     'name' => $collection[$i][1],
-                    'color' => $collection[$i][7]
+                    'color_1' => $collection[$i][7],
+                    'color_2' => $collection[$i][8]
                 ]);
             }
 
@@ -152,7 +154,8 @@ class TestController extends Controller
             if (!$avilableSubject && $collection[$i][2] != '') {
                 Subject::create([
                     'name' => $collection[$i][2],
-                    'color' => $collection[$i][7]
+                    'color_1' => $collection[$i][7],
+                    'color_2' => $collection[$i][8]
                 ]);
             }
 
@@ -160,7 +163,8 @@ class TestController extends Controller
             if (!$avilableUnit && $collection[$i][3] != '') {
                 Unit::create([
                     'name' => $collection[$i][3],
-                    'color' => $collection[$i][7]
+                    'color_1' => $collection[$i][7],
+                    'color_2' => $collection[$i][8]
                 ]);
             }
         }
@@ -177,7 +181,8 @@ class TestController extends Controller
                     'chapter_id' => $avilableChapter->id,
                     'subject_id' => $avilableSubject->id,
                     'unit_id' => $avilableUnit->id,
-                    'color' => $collection[$i][7],
+                    'color_1' => $collection[$i][7],
+                    'color_2' => $collection[$i][8],
                     'name' => $collection[$i][4],
                     'tests' => [$collection[$i][6]],
                 ]);

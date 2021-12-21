@@ -17,7 +17,8 @@ class CreateSubjectsTable extends Migration
             $table->id();
             $table->softDeletes();
             $table->text('name');
-            $table->string('color');
+            $table->string('color_1');
+            $table->string('color_2');
 
             $table->unsignedBigInteger('chapter_id')->nullable();
             $table->foreign('chapter_id')->references('id')->on('chapters')->onDelete('cascade');;

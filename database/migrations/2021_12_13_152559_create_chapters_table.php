@@ -17,7 +17,8 @@ class CreateChaptersTable extends Migration
             $table->id();
             $table->softDeletes();
             $table->text('name');
-            $table->string('color');
+            $table->string('color_1');
+            $table->string('color_2');
 
             $table->unsignedBigInteger('class_room_id')->nullable();
             $table->foreign('class_room_id')->references('id')->on('class_rooms')->onDelete('cascade');;
