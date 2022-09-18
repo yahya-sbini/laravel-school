@@ -19,19 +19,9 @@ class CreateLessonsTable extends Migration
             $table->text('name');
             $table->string('color_1');
             $table->string('color_2');
-            $table->json('tests');
 
             $table->unsignedBigInteger('unit_id')->nullable();
-            $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');;
-
-            $table->unsignedBigInteger('subject_id')->nullable();
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');;
-
-            $table->unsignedBigInteger('chapter_id')->nullable();
-            $table->foreign('chapter_id')->references('id')->on('chapters')->onDelete('cascade');;
-
-            $table->unsignedBigInteger('class_room_id')->nullable();
-            $table->foreign('class_room_id')->references('id')->on('class_rooms')->onDelete('cascade');;
+            $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -20,7 +20,7 @@ class TestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+   /* public function index(Request $request)
     {
         $query  = Lesson::query();
         $query->with('unit', 'classRoom', 'subject', 'chapter');
@@ -59,6 +59,7 @@ class TestController extends Controller
         return $this->response($query->get());
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -77,18 +78,47 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $res = Test::create([
+
+            'lesson_id'    => $request -> lesson_id,
+            'test_link'       => $request -> test_link,
+            'test_label'       => $request -> test_label,
+            'color_1'         => $request -> color_1,
+            'color_2'         => $request -> color_2,
+
+        ]);
+        if ($res) return ["operationn" => "Done"];
+        else return ["operation" => "Error Occured"];
+
     }
 
+    public function delete(Test $tset,$id){
+        $res = $tset::find($id) -> delete ();
+
+        if ($res) return ["operationn" => "Done"];
+        else return ["operation" => "Error Occured"];
+
+    }
+
+
+    public function edit_name(Request $request,$id)
+    {
+        $test = Test::find($id);
+        $test -> name = $request -> name;
+        $res =  $test -> save();
+        if ($res) return ["operationn" => "Done"];
+        else return ["operation" => "Error Occured"];
+    }
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Test  $test
      * @return \Illuminate\Http\Response
      */
-    public function show(Test $test)
+    public function show(Test $test,$id)
     {
-        //
+        $res =Test::select('*')->where('lesson_id', $id)->get();
+        return $res;
     }
 
     /**

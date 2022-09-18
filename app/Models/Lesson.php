@@ -12,23 +12,12 @@ class Lesson extends Model
 
     protected $guarded = [];
 //    protected $with = ['units', 'classRooms', 'subjects', 'chapters'];
-    protected $casts = [
+   /* protected $casts = [
         'tests' => 'array'
-    ];
+    ];*/
 
     public function unit() {
         return $this->belongsTo(Unit::class);
     }
 
-    public function classRoom() {
-        return $this->belongsTo(ClassRoom::class);
-    }
-
-    public function subject() {
-        return $this->belongsTo(Subject::class);
-    }
-
-    public function chapter() {
-        return $this->belongsTo(Chapter::class);
-    }
 }

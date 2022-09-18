@@ -35,7 +35,16 @@ class ClassRoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $res = ClassRoom::create([
+            'name'         => $request -> name,
+            'color_1'      => $request -> color_1,
+            'color_2'      => $request -> color_2,
+            'img_url'      => $request -> img_url,
+            'level'        => $request -> level,
+        ]);
+        if ($res) return ["operationn" => "Done"];
+        else return ["operation" => "Error Occured"];
+
     }
 
     /**
@@ -46,7 +55,8 @@ class ClassRoomController extends Controller
      */
     public function show(ClassRoom $classRoom)
     {
-        //
+        $res = $classRoom -> get();
+        return $res;
     }
 
     /**

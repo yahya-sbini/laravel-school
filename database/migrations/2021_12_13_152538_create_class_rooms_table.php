@@ -15,10 +15,12 @@ class CreateClassRoomsTable extends Migration
     {
         Schema::create('class_rooms', function (Blueprint $table) {
             $table->id();
-            $table->softDeletes();
             $table->text('name');
             $table->string('color_1');
             $table->string('color_2');
+            $table ->string('img_url');
+            $table->string('level');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

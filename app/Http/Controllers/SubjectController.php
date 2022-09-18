@@ -35,7 +35,16 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $res = Subject::create([
+
+            'name'          => $request -> name,
+            'color_1'       => $request -> color_1,
+            'color_2'       => $request -> color_2,
+            'chapter_id'    => $request -> chapter_id,
+            'img_url'      => $request -> img_url,
+        ]);
+        if ($res) return ["operationn" => "Done"];
+        else return ["operation" => "Error Occured"];
     }
 
     /**
@@ -44,9 +53,12 @@ class SubjectController extends Controller
      * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function show(Subject $subject)
+    public function show(Subject $subject,$id)
     {
-        //
+
+        $res =Subject::select('*')->where('chapter_id', $id)->get();
+        return $res;
+
     }
 
     /**

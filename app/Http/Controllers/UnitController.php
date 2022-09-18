@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class UnitController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +37,22 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $res = unit::create([
+            'name'         => $request -> name,
+            'color_1'      => $request -> color_1,
+            'color_2'      => $request -> color_2,
+            'subject_id'   => $request -> subject_id,
+        ]);
+        if ($res) return ["operationn" => "Done"];
+        else return ["operation" => "Error Occured"];
+
+    }
+       //showe (one more)
+    public function delete(Unit $unit,$id){
+        $res = $unit::find($id) -> delete ();
+        if ($res) return ["operationn" => "Done"];
+        else return ["operation" => "Error Occured"];
+
     }
 
     /**
@@ -44,9 +61,12 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function show(Unit $unit)
+    public function show(Unit $unit,$id)
     {
-        //
+
+        $res =Unit::select('*')->where('subject_id', $id)->get();
+        return $res;
+
     }
 
     /**
@@ -55,9 +75,13 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unit $unit)
+    public function edit_name(Request $request,$id)
     {
-        //
+        $unit = Unit::find($id);
+        $unit -> name = $request -> name;
+        $res =  $unit -> save();
+        if ($res) return ["operationn" => "Done"];
+        else return ["operation" => "Error Occured"];
     }
 
     /**

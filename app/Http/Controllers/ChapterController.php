@@ -35,7 +35,15 @@ class ChapterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $res = Chapter::create([
+
+            'name'          => $request -> name,
+            'color_1'       => $request -> color_1,
+            'color_2'       => $request -> color_2,
+            'class_room_id' => $request -> class_room_id,
+        ]);
+        if ($res) return ["operationn" => "Done"];
+        else return ["operation" => "Error Occured"];
     }
 
     /**
@@ -44,9 +52,12 @@ class ChapterController extends Controller
      * @param  \App\Models\Chapter  $chapter
      * @return \Illuminate\Http\Response
      */
-    public function show(Chapter $chapter)
+    public function show(Chapter $chapter,$id)
     {
-        //
+
+        $res = Chapter::select('*') -> where('class_room_id',$id) -> get();
+        return $res;
+
     }
 
     /**

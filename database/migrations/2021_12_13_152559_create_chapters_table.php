@@ -15,8 +15,7 @@ class CreateChaptersTable extends Migration
     {
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
-            $table->softDeletes();
-            $table->text('name');
+            $table->string('name');
             $table->string('color_1');
             $table->string('color_2');
 
@@ -24,6 +23,7 @@ class CreateChaptersTable extends Migration
             $table->foreign('class_room_id')->references('id')->on('class_rooms')->onDelete('cascade');;
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

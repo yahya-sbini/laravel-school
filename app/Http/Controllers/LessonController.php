@@ -35,7 +35,24 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $res = Lesson::create([
+            'name'            => $request -> name,
+            'color_1'         => $request -> color_1,
+            'color_2'         => $request -> color_2,
+            //REMOVED 'test_link'       => $request -> test_link,
+            'unit_id'         => $request -> unit_id,
+        ]);
+        if ($res) return ["operationn" => "Done"];
+        else return ["operation" => "Error Occured"];
+    }
+
+    public function delete(Lesson $lesson,$id){
+        $res = $lesson::find($id) -> delete ();
+       // $lesson -> save();
+        //check here
+        if ($res) return ["operationn" => "Done"];
+        else return ["operation" => "Error Occured"];
+
     }
 
     /**
@@ -44,9 +61,10 @@ class LessonController extends Controller
      * @param  \App\Models\Lesson  $lesson
      * @return \Illuminate\Http\Response
      */
-    public function show(Lesson $lesson)
+    public function show(Lesson $lesson,$id)
     {
-        //
+        $res =Lesson::select('*')->where('unit_id', $id)->get();
+        return $res;
     }
 
     /**
@@ -55,10 +73,24 @@ class LessonController extends Controller
      * @param  \App\Models\Lesson  $lesson
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lesson $lesson)
+    public function edit_name(Request $request,$id)
     {
-        //
+        $lesson = Lesson::find($id);
+        $lesson -> name = $request -> name;
+        $res =  $lesson -> save();
+        if ($res) return ["operationn" => "Done"];
+        else return ["operation" => "Error Occured"];
     }
+
+    public function edit_link(Request $request,$id)
+    {
+        $lesson = Lesson::find($id);
+        $lesson -> test_link = $request -> test_link;
+        $res =  $lesson -> save();
+        if ($res) return ["operationn" => "Done"];
+        else return ["operation" => "Error Occured"];
+    }
+
 
     /**
      * Update the specified resource in storage.
